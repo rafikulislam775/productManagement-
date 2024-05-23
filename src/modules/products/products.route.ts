@@ -7,5 +7,9 @@ router.post("/", productsControllers.createProduct);
 // Endpoint: /api/products get  all products
 router.get("/", productsControllers.getAllProducts);
 
+// Endpoint: /api/products/:productId
+router.get("/:productId", productsControllers.getProductById);
+
+    
 
 export const productsRouter = router;

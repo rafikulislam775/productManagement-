@@ -43,8 +43,45 @@ const getAllProducts = async (req: Request, res: Response) => {
     });
   }
 };
+// try to get Product By Id
+
+const getProductById = async (req: Request, res: Response) => {
+  try {
+    // destructuring here
+    const {productId} = req.params;
+    console.log(productId)
+    const result = await ProductServices.getProductById(productId);
+    // const getProductById = async (productId: string) => {
+    //   const result = await Products.findById(productId);
+    //   return result;
+    // }
+    res.status(200).json({
+      success: true,
+      message: "Product fetched successfully!",
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong!",
+      error: err,
+    });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
 
 export const productsControllers = {
   createProduct,
   getAllProducts,
+  getProductById
 };

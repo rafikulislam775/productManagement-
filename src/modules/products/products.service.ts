@@ -12,8 +12,14 @@ const getAllProducts = async () => {
   const result = await Products.find();
   return result;
 }
+// get request by Id logic or function findById came from mongoose 
+const getProductById = async (productId: string) => {
+  const result = await Products.findById(productId);
+  return result;
+}
 
 export const ProductServices = {
   createProduct,
-  getAllProducts
+  getAllProducts,
+  getProductById
 };

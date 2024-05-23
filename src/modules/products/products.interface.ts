@@ -18,25 +18,3 @@ export type TProducts = {
   variants: TVariant[]; // this one is array of object types
   inventory: TInventory; // this one is only object type
 };
-
-// const products: TProducts = {
-//   name: "iPhone 13",
-//   description: "A sleek and powerful smartphone with cutting-edge features.",
-//   price: 999,
-//   category: "Electronics",
-//   tags: ["smartphone", "Apple", "iOS"],
-//   variants: [
-//     {
-//       type: "Color",
-//       value: "Midnight Blue",
-//     },
-//     {
-//       type: "Storage Capacity",
-//       value: "256GB",
-//     },
-//   ],
-//   inventory: {
-//     quantity: 50,
-//     inStock: true,
-//   },
-// };

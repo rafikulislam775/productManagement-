@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Products } from "./products.models";
+// import { Products } from "./products.models";
 import { ProductServices } from "./products.service";
 // eta request and response  k control korar jnn  use kaora
 // then control service  k call kore
@@ -44,12 +44,12 @@ const getAllProducts = async (req: Request, res: Response) => {
   }
 };
 // try to get Product By Id
-
 const getProductById = async (req: Request, res: Response) => {
   try {
     // destructuring here
-    const {productId} = req.params;
-    console.log(productId)
+    // je name route e naming koresi tai dite hobe
+    const { productId } = req.params;
+    // console.log(productId) //             .getProductById came from service
     const result = await ProductServices.getProductById(productId);
     // const getProductById = async (productId: string) => {
     //   const result = await Products.findById(productId);
@@ -59,7 +59,7 @@ const getProductById = async (req: Request, res: Response) => {
       success: true,
       message: "Product fetched successfully!",
       data: result,
-    });
+    }); 
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -68,20 +68,60 @@ const getProductById = async (req: Request, res: Response) => {
     });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
+// try to get Product  and delete it
+const deleteProductById = async (req: Request, res: Response) => {
+  try {
+    // destructuring here
+    // je name route e naming koresi tai dite hobe
+    const { productId } = req.params;
+    // console.log(productId) //             .getProductById came from service
+    const result = await ProductServices.deleteProductById(productId);
+    // const getProductById = async (productId: string) => {
+    //   const result = await Products.findById(productId);
+    //   return result;
+    // }
+    res.status(200).json({
+      success: true,
+      message: "Product deleted successfully!",
+      data: result,
+    }); 
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong!",
+      error: err,
+    });
+  }
+};
+// try to update one product 
+const updateProductById = async(req: Request, res: Response)=>{
+    const { productId } = req.params;
+    //get data after change
+    const updateData = req.body;
+    // console.log(updateData)
+    try {
+      const result = await ProductServices.updateProductById(productId, updateData)
+      res.status(200).json({
+        success: true,
+        message: "Product update successfully!",
+        data: result,
+      }); 
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: "Something went wrong!",
+        error: err,
+      });
+      
+    }
+      
+     
+}
 
 export const productsControllers = {
   createProduct,
   getAllProducts,
-  getProductById
+  getProductById,
+  deleteProductById,
+  updateProductById
 };

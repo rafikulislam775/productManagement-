@@ -4,27 +4,33 @@ import { TInventory, TProducts, TVariant } from "./products.interface";
 
 //2. Create a Schema corresponding to the document interface.
 //sub schema
-const variantSchema = new Schema<TVariant>({
-  type: {
-    type: String,
-    required: true,
+const variantSchema = new Schema<TVariant>(
+  {
+    type: {
+      type: String,
+      required: true,
+    },
+    value: {
+      type: String,
+      required: true,
+    },
   },
-  value: {
-    type: String,
-    required: true,
-  },
-});
+  { _id: false }
+);
 // sub schema
-const inventorySchema = new Schema<TInventory>({
-  quantity: {
-    type: Number,
-    required: true,
+const inventorySchema = new Schema<TInventory>(
+  {
+    quantity: {
+      type: Number,
+      required: true,
+    },
+    inStock: {
+      type: Boolean,
+      required: true,
+    },
   },
-  inStock: {
-    type: Boolean,
-    required: true,
-  },
-});
+  { _id: false }
+);
 //main schema
 const productSchema = new Schema<TProducts>({
   name: {

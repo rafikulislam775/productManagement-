@@ -4,8 +4,9 @@ import express, { Application, Request, Response } from "express";
 import { productsRouter } from "./modules/products/products.route";
 
 const app: Application = express();
-
-// for using existing routes
+//use parsers to get body data
+app.use(express.json());
+// for using existing routes and coming on routes file
 app.use("/api/products", productsRouter);
 
 app.get("/", (req: Request, res: Response) => {

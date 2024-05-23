@@ -1,5 +1,6 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 import { TInventory, TProducts, TVariant } from "./products.interface";
+import e from "express";
 //! <TProducts> Schema corresponding to the coming interface. like check
 
 //2. Create a Schema corresponding to the document interface.
@@ -56,3 +57,6 @@ const productSchema = new Schema<TProducts>({
     required: true,
   },
 });
+
+// create a model base on the schema
+export const Products = model<TProducts>("Products", productSchema);

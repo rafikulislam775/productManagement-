@@ -119,6 +119,25 @@ const deleteProductById = async (req: Request, res: Response) => {
     });
   }
 };
+// try to search products using regex
+const searchProducts = async (req: Request, res: Response) => {
+  try {
+    const { searchTerm } = req.query;  
+    console.log(searchTerm)
+    const result = await ProductServices.searchProducts(searchTerm as string);
+    res.status(200).json({
+      success: true,
+      message: "Products matching search term fetched successfully!",
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong!",
+      error: err,
+    });
+  }
+};
 
 export const productsControllers = {
   createProduct,
@@ -126,4 +145,5 @@ export const productsControllers = {
   getProductById,
   updateProductById,
   deleteProductById,
-};
+  searchProducts
+}

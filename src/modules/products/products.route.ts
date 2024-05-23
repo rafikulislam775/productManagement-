@@ -14,4 +14,7 @@ router.put("/:productId", productsControllers.updateProductById);
 // Endpoint: /api/products/:productId delete one
 router.delete("/:productId", productsControllers.deleteProductById);
 
+//try /api/products?searchTerm=iphone using regxe
+
+router.get("/",productsControllers.searchProducts);
 export const productsRouter = router;

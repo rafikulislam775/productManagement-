@@ -68,31 +68,7 @@ const getProductById = async (req: Request, res: Response) => {
     });
   }
 };
-// try to get Product  and delete it
-const deleteProductById = async (req: Request, res: Response) => {
-  try {
-    // destructuring here
-    // je name route e naming koresi tai dite hobe
-    const { productId } = req.params;
-    // console.log(productId) //             .getProductById came from service
-    const result = await ProductServices.deleteProductById(productId);
-    // const getProductById = async (productId: string) => {
-    //   const result = await Products.findById(productId);
-    //   return result;
-    // }
-    res.status(200).json({
-      success: true,
-      message: "Product deleted successfully!",
-      data: result,
-    }); 
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Something went wrong!",
-      error: err,
-    });
-  }
-};
+
 // try to update one product 
 const updateProductById = async(req: Request, res: Response)=>{
     const { productId } = req.params;
@@ -118,10 +94,36 @@ const updateProductById = async(req: Request, res: Response)=>{
      
 }
 
+// try to get Product  and delete it
+const deleteProductById = async (req: Request, res: Response) => {
+  try {
+    // destructuring here
+    // je name route e naming koresi tai dite hobe
+    const { productId } = req.params;
+    //console.log(productId) //             .getProductById came from service
+    const result = await ProductServices.deleteProductById(productId);
+    // const getProductById = async (productId: string) => {
+    //   const result = await Products.findById(productId);
+    //   return result;
+    // }
+    res.status(200).json({
+      success: true,
+      message: "Product deleted successfully!",
+      data:null,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong!",
+      error: err,
+    });
+  }
+};
+
 export const productsControllers = {
   createProduct,
   getAllProducts,
   getProductById,
+  updateProductById,
   deleteProductById,
-  updateProductById
 };

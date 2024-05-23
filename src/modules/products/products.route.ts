@@ -9,10 +9,9 @@ router.get("/", productsControllers.getAllProducts);
 
 // Endpoint: /api/products/:productId
 router.get("/:productId", productsControllers.getProductById);
-// Endpoint: /api/products/:productId delete one
-router.delete("/:productId", productsControllers.deleteProductById);
-
 // try to update one product 
 router.put("/:productId", productsControllers.updateProductById);
+// Endpoint: /api/products/:productId delete one
+router.delete("/:productId", productsControllers.deleteProductById);
 
 export const productsRouter = router;
